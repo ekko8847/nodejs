@@ -23,20 +23,21 @@ app.use(express.urlencoded({
 
 //处理账号和密码是否为空的中间件
 app.use((req, res, next) => {
-        const {
-            username,
-            password
-        } = req.query;
-        if (!username || !password) {
-            const filePath = path.resolve(__dirname, "./public/err.ejs");
-            return res.render(filePath, {
-                errData: "账号和密码不能为空"
-            })
-        }
-        //当处理完成的时候继续往下走 (next方法)
-        next();
-    })
-    //处理账号和密码的正则
+    const {
+        username,
+        password
+    } = req.query;
+    if (!username || !password) {
+        const filePath = path.resolve(__dirname, "./public/err.ejs");
+        return res.render(filePath, {
+            errData: "账号和密码不能为空"
+        })
+    }
+    //当处理完成的时候继续往下走 (next方法)
+    next();
+})
+
+//处理账号和密码的正则
 app.use((req, res, next) => {
     //查看用户输入内容 拿到用户名和密码
     const {
@@ -44,7 +45,7 @@ app.use((req, res, next) => {
         password
     } = req.query;
 
-    const userReg = /^[A-Z]{1}[0-9a-zA-Z_]{6,10}$/;
+    const userReg = /^[A-Z]{1}[0-9a-zA-Z_]{6,11}$/;
     const passReg = /^[0-9]{6}$/;
     if (!userReg.test(username) || !passReg.test(password)) {
         //拼接err.ejs的路径
@@ -66,16 +67,16 @@ app.get("/register", async(req, res) => {
         password
     } = req.query;
     // console.log(req.query) //查看用户输入内容 
-    // //判断用户的账号和密码是否为空
-    // if (!username || !password) //有一个为空的话非空就为真 或运算符有真则真
-    // {
-    //     //拼接err.ejs的路径
-    //     const filePath = path.resolve(__dirname, "./public/err.ejs");
-    //     return res.render(filePath, {
-    //         errData: "账号或密码不能为空!"
-    //     })
-    // }
-    //判断用户名是否已经被注册(去数据库查询当前的用户名)
+    /* //判断用户的账号和密码是否为空
+    if (!username || !password) //有一个为空的话非空就为真 或运算符有真则真
+    {
+        //拼接err.ejs的路径
+        const filePath = path.resolve(__dirname, "./public/err.ejs");
+        return res.render(filePath, {
+            errData: "账号或密码不能为空!"
+        })
+    }
+    判断用户名是否已经被注册(去数据库查询当前的用户名) */
     const isHasUser = await userModel.findOne({
             username
         })
@@ -104,13 +105,13 @@ app.get("/login", async(req, res) => {
         username,
         password
     } = req.query;
-    // //判断信息是否为空
-    // if (!username || !password) {
-    //     const filePath = path.resolve(__dirname, "./public/err.ejs");
-    //     return res.render(filePath, {
-    //         errData: "账号或密码不能为空"
-    //     })
-    // };
+    /*  //判断信息是否为空
+     if (!username || !password) {
+         const filePath = path.resolve(__dirname, "./public/err.ejs");
+         return res.render(filePath, {
+             errData: "账号或密码不能为空"
+         })
+     }; */
     //根据username去数据库查询是否存在该用户
     const isHasUser = await userModel.findOne({
         username
