@@ -25,7 +25,7 @@ router.get("/register", async(req, res) => {
         })
         //如果isHasUser存在(不为null)
     if (isHasUser) {
-        const filePath = path.resolve(__dirname, "./public/err.ejs") //当前目录下的用. err.ejs是错误页面(满足条件就跳转)
+        const filePath = path.resolve(__dirname, "../views/err.ejs") //当前目录下的用. err.ejs是错误页面(满足条件就跳转)
         return res.render(filePath, {
             errData: "用户名已被注册"
         })

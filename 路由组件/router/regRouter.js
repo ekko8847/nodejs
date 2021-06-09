@@ -11,8 +11,8 @@ const regRouterFn = (req, res, next) => {
             password
         } = req.query;
 
-        const userReg = /^[0-9a-zA-Z_]{6,15}$/;
-        const passReg = /^[0-9a-zA-Z_]{1,15}$/;
+        const userReg = /^[A-Z]{1}[0-9a-zA-Z_]{6,11}$/;
+        const passReg = /^[0-9]{3,6}$/;
         if (!userReg.test(username) || !passReg.test(password)) {
             //拼接err.ejs的路径
             const filePath = path.resolve(__dirname, "../views/err.ejs");
