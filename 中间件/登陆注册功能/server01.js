@@ -136,39 +136,39 @@ app.get("/login", async(req, res) => {
     res.sendFile(filePath);
 })
 
-// //3.图片接口
-// app.get("/static/:src", (req, res) => {
-//     // console.log(req.params);
-//     const {
-//         src
-//     } = req.params;
-//     const filePath = path.resolve(__dirname, "./static", src)
-//     res.sendFile(filePath)
-// })
+/* //3.图片接口
+app.get("/static/:src", (req, res) => {
+    // console.log(req.params);
+    const {
+        src
+    } = req.params;
+    const filePath = path.resolve(__dirname, "./static", src)
+    res.sendFile(filePath)
+})
 
-// //默认路径是index.html
-// app.get("/", (req, res) => {
-//         //当访问根目录则默认重定向到index.html
-//         res.redirect("/index.html")
-//     })
-//     //index.html的路径
-// app.get("/index.html", (req, res) => {
-//         //获取index.html的路径
-//         const filePath = path.resolve(__dirname, "./public/index.html");
-//         res.sendFile(filePath);
-//     })
-//     //login.html的路径
-// app.get("/login.html", (req, res) => {
-//         //获取index.html的路径
-//         const filePath = path.resolve(__dirname, "./public/login.html");
-//         res.sendFile(filePath);
-//     })
-//     //register.html的路径
-// app.get("/register.html", (req, res) => {
-//     //获取index.html的路径
-//     const filePath = path.resolve(__dirname, "./public/register.html");
-//     res.sendFile(filePath);
-// })
+//默认路径是index.html
+app.get("/", (req, res) => {
+        //当访问根目录则默认重定向到index.html
+        res.redirect("/index.html")
+    })
+    //index.html的路径
+app.get("/index.html", (req, res) => {
+        //获取index.html的路径
+        const filePath = path.resolve(__dirname, "./public/index.html");
+        res.sendFile(filePath);
+    })
+    //login.html的路径
+app.get("/login.html", (req, res) => {
+        //获取index.html的路径
+        const filePath = path.resolve(__dirname, "./public/login.html");
+        res.sendFile(filePath);
+    })
+    //register.html的路径
+app.get("/register.html", (req, res) => {
+    //获取index.html的路径
+    const filePath = path.resolve(__dirname, "./public/register.html");
+    res.sendFile(filePath);
+}) */
 
 
 //监听端口号和服务器状态
