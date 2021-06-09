@@ -40,10 +40,12 @@ router.get("/login", async(req, res) => {
 
     //登陆成功要设置cookie响应给客户端(把ID设置给cookie)
     //第一个参数为cookie的ID(直接用),第二个为数据库的id,第三为设置的值
-    res.cookie("userID", isHasUser._id, {
-        maxAge: 1000 * 60 * 60 * 24, //http1.1提供,以毫秒为单位 过期时间
-        httpOnly: true //设置为不可通过document.cookie来修改
-    });
+    /*  res.cookie("userID", isHasUser._id, {
+         maxAge: 1000 * 60 * 60 * 24, //http1.1提供,以毫秒为单位 过期时间
+         httpOnly: true //设置为不可通过document.cookie来修改
+     }); */
+    //登录成功设置session
+    req.session.username = username;
     //登陆成功跳转至个人中心
     const filePath = path.resolve(__dirname, "../views/center.html");
     res.sendFile(filePath);

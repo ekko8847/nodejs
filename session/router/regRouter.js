@@ -12,7 +12,7 @@ const regRouterFn = (req, res, next) => {
         } = req.query;
 
         const userReg = /^[a-zA-Z_]{3,7}$/;
-        const passReg = /^[0-9a-z]{3,6}$/;
+        const passReg = /^[0-9]{3,6}$/;
         if (!userReg.test(username) || !passReg.test(password)) {
             //拼接err.ejs的路径
             const filePath = path.resolve(__dirname, "../views/err.ejs");
