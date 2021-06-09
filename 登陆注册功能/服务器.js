@@ -21,8 +21,8 @@ app.get("/register", async(req, res) => {
         username,
         password
     } = req.query;
-    console.log(req.query) //查看用户输入内容 
-        //判断用户的账号和密码是否为空
+    // console.log(req.query) //查看用户输入内容 
+    //判断用户的账号和密码是否为空
     if (!username || !password) //有一个为空的话非空就为真 或运算符有真则真
     {
         //拼接err.ejs的路径
