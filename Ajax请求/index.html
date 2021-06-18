@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 写#号阻止form提交 -->
+    <form action="#" id="form">
+        user: <input type="text" name="user" id="user">
+        <br> pass: <input type="text" name="pass" id="pass">
+        <br>
+        <button id="btn">提交</button>
+    </form>
+    <script>
+        const oform = document.getElementById("form");
+        const obtn = document.getElementById("btn");
+        const ouser = document.getElementById("user");
+        const opass = document.getElementById("pass");
+        //GET请求
+        /*  oform.onsubmit = function() {
+             //1.实例化XMLHttpRequest对象;
+             var xhr = new XMLHttpRequest();
+             //2.打开连接open方法(参数1:请求方式;参数2:请求地址url;参数3:是否异步);
+             xhr.open("get", `/login?user=${ouser.value}&pass=${opass.value}&time=${Date.now()}`, true); //拼接一个时间戳不让读取缓存
+             //3.发送请求send方法
+             xhr.send();
+             //4.xhr有一个onreadystatechange事件可以接受请求过程中readystate码;
+             xhr.onreadystatechange = function() {
+                 console.log(xhr.readyState);
+                 //当readstate变为4并且响应状态码(status)是200代表真正请求完成
+                 if (xhr.readyState === 4 && xhr.status === 200) {
+                     //两个属性接收到响应
+                     //xhr.responseText:接收文本数据json字符串等
+                     //xhr.responseXML:接收XML的数据(几乎不用)
+                     console.log(JSON.parse(xhr.responseText)); //将json字符串转化为json对象;
+                 }
+             }
+             return false; //阻止表单提交的默认事件
+         } */
+        //post请求
+        oform.onsubmit = function() {
+            //1.实例化XMLHttpRequest对象;
+            const xhr = new XMLHttpRequest();
+            //2.打开连接open方法(参数1:请求方式;参数2:请求地址url;参数3:是否异步);
+            xhr.open("post", `/login`, true); //拼接一个时间戳不让读取缓存
+
+            //post请求需要设置请求头
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8")
+                //3.发送请求send方法
+            xhr.send(`user=${ouser.value}&pass=${opass.value}`)
+                /*  发送的是json字符串格式
+                 xhr.send(JSON.stringify({
+                     user: ouser.value,
+                     pass: opass.value
+                 })); */
+                //4.xhr有一个onreadystatechange事件可以接受请求过程中readystate码;
+            xhr.onreadystatechange = function() {
+                console.log(xhr.readyState);
+                //当readstate变为4并且响应状态码(status)是200代表真正请求完成
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    //两个属性接收到响应
+                    //xhr.responseText:接收文本数据json字符串等
+                    //xhr.responseXML:接收XML的数据(几乎不用)
+                    console.log(JSON.parse(xhr.responseText)); //将json字符串转化为json对象;
+                }
+            }
+            return false; //阻止表单提交的默认事件
+        }
+    </script>
+</body>
+
+</html>
