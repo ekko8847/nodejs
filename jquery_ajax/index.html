@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 写#号阻止form提交 -->
+    <form action="#" id="form">
+        user: <input type="text" name="user" id="user">
+        <br> pass: <input type="text" name="pass" id="pass">
+        <br>
+        <button id="btn">提交</button>
+    </form>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        const oform = document.getElementById("form");
+        const obtn = document.getElementById("btn");
+        const ouser = document.getElementById("user");
+        const opass = document.getElementById("pass");
+        $("#btn").click(function() {
+            /*  $.ajax({
+                 method: "post", //控制请求方式
+                 url: "/login", //请求地址
+                 cache: false, //是否读取缓存
+                 data: {
+                     user: "ekko",
+                     pass: 123
+                 },
+                 dataType: "json", //期望返回的类型
+                 headers: { //设置请求头
+                     "Cache-Control": "max-age"
+                 },
+                 success(data) { //请求成功的回调函数
+                    console.log(data); //请求得到的数据
+                }
+             }) */
+            //jQuery二级封装
+            /* $.get("/login", {
+                user: "kiko",
+                pass: "123"
+            }, data => {
+                console.log(data);
+            }) */
+            /*  $.post("/login", {
+                     user: kiko,
+                     pass: 123
+                 }, data => {
+                     console.log(data);
+                 }) */
+            //jquery三级封装
+            $.getJSON("/login", {
+                user: ekko,
+                pass: 123,
+
+            }, data => {
+                console.log(data);
+            })
+        })
+    </script>
+</body>
+
+</html>
