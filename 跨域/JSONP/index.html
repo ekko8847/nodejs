@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">按钮</button>
+    <script>
+        const obtn = document.getElementById("btn");
+        let newScript = null;
+
+        function fn() {
+            console.log("成功了")
+        }
+        obtn.onclick = function() {
+            if (newScript) {
+                newScript.remove();
+            }
+            newScript = document.createElement("script");
+            newScript.src = `http://127.0.0.1:5000/login?user=kiko&pass=123&callback=fn&${Date.now()}`
+            document.body.appendChild(newScript);
+        }
+    </script>
+</body>
+
+</html>
