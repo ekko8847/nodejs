@@ -14,6 +14,8 @@ app.get("/", (req, res) => {
     res.sendFile(filePath);
 })
 app.post("/login", (req, res) => {
+    
+    
     /*  //get请求中用req.query
      const {
          user,
@@ -42,10 +44,10 @@ app.post("/login", (req, res) => {
     return res.json(err);
 
 })
-app.listen("5000", err => {
+app.listen("3010", err => {
     if (err) {
         console.log(err);
         return;
     }
-    console.log("http://127.0.0.1:5000");
+    console.log("http://127.0.0.1:3010");
 })
